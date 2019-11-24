@@ -42,9 +42,17 @@ struct Test_1 : Module {
 
         // Compute the saw output
         float saw = phase;
+		// Compute the square output
+		float square;
+		if (phase > 0.f) {
+			square = -1.f;
+		}else{
+			square = 1.f;
+		}
         // Audio signals are typically +/-5V
         // https://vcvrack.com/manual/VoltageStandards.html
-        outputs[SINE_OUTPUT].setVoltage(5.f * saw);
+        //outputs[SINE_OUTPUT].setVoltage(5.f * saw);
+		outputs[SINE_OUTPUT].setVoltage(5.f * square);
 
         // Blink light at 1Hz
         blinkPhase += args.sampleTime*2;

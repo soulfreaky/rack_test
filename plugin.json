@@ -1,0 +1,25 @@
+{
+  "slug": "test_1",
+  "name": "Hello World",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "brand": "QSTN",
+  "author": "Carlos del Amo",
+  "authorEmail": "carlosdelamov@gmail.com",
+  "authorUrl": "",
+  "pluginUrl": "",
+  "manualUrl": "",
+  "sourceUrl": "",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "test_1",
+      "name": "Hello World",
+      "description": "",
+      "tags": [
+        "test"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 #include "plugin.hpp"
+#include <math.h>
 
 
 struct Test_1 : Module {
@@ -40,7 +41,7 @@ struct Test_1 : Module {
             phase -= 1.f;
 
         // Compute the sine output
-        float sine = std::sin(2.f * M_PI * phase);
+        float sine = pow(std::sin(2.f * M_PI * phase), 2.0);
         // Audio signals are typically +/-5V
         // https://vcvrack.com/manual/VoltageStandards.html
         outputs[SINE_OUTPUT].setVoltage(5.f * sine);

@@ -24,33 +24,33 @@ struct Test_1 : Module {
 
 	Test_1() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-		configParam(PITCH_PARAM, 0.f, 1.f, 0.f, "");
+		configParam(PITCH_PARAM, 0.f, 4.f, 1.0f, "");
 	}
 
 	void process(const ProcessArgs &args) override {
         // Compute the frequency from the pitch parameter and input
         float pitch = params[PITCH_PARAM].getValue();
         pitch += inputs[PITCH_INPUT].getVoltage();
-        pitch = clamp(pitch, -4.f, 4.f);
+        //pitch = clamp(pitch, -1000.f, 1000.f);
         // The default pitch is C4 = 261.6256f
-        float freq = dsp::FREQ_C4 * std::pow(2.f, pitch);
+        float freq = 30.00f * std::pow(2.f, pitch);
 
         // Accumulate the phase
         phase += freq * args.sampleTime;
         if (phase >= 0.5f)
             phase -= 1.f;
 
-        // Compute the sine output
-        float sine = pow(std::sin(2.f * M_PI * phase), 2.0);
+        // Compute the saw output
+        float saw = phase;
         // Audio signals are typically +/-5V
         // https://vcvrack.com/manual/VoltageStandards.html
-        outputs[SINE_OUTPUT].setVoltage(5.f * sine);
+        outputs[SINE_OUTPUT].setVoltage(5.f * saw);
 
         // Blink light at 1Hz
-        blinkPhase += args.sampleTime;
+        blinkPhase += args.sampleTime*2;
         if (blinkPhase >= 1.f)
             blinkPhase -= 1.f;
-        lights[BLINK_LIGHT].setBrightness(blinkPhase < 0.5f ? 1.f : 0.f);
+        lights[BLINK_LIGHT].setBrightness(blinkPhase);
     }
 };
 

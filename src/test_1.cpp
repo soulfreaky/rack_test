@@ -33,7 +33,7 @@ struct Test_1 : Module {
         pitch += inputs[PITCH_INPUT].getVoltage();
         //pitch = clamp(pitch, -1000.f, 1000.f);
         // The default pitch is C4 = 261.6256f
-        float freq = 30.00f * std::pow(2.f, pitch);
+        float freq = 65.406f * std::pow(2.f, pitch);
 
         // Accumulate the phase
         phase += freq * args.sampleTime;
